@@ -501,16 +501,17 @@ function filterGrievances() {
     const slaClass = (g.slaHoursLeft <= 24) ? 'text-red' : '';
 
     let attachmentsHtml = '<span style="color:var(--muted-ink); font-size:11px;">None</span>';
-    const hasVoice = g.hasVoice || (g.description && g.description.includes('🎙️ Voice Note'));
-    const hasPhoto = g.hasPhoto || (g.description && g.description.includes('📸 Photos Attached'));
+    const hasVoice = g.hasVoice || g.voiceBase64 || (g.description && g.description.includes('🎙️ Voice Note'));
+    const hasPhoto = g.hasPhoto || g.photoBase64 || (g.photos && g.photos.length > 0) || (g.description && g.description.includes('📸 Photos Attached'));
 
     if (hasVoice || hasPhoto) {
       attachmentsHtml = '<div style="display:flex; gap:6px; flex-wrap:wrap;">';
       if (hasVoice) {
-        attachmentsHtml += `<button class="attachment-pill voice" onclick="playVoiceAudio('${g.id}', '${encodeURIComponent(g.voiceSnippet || 'Audio Statement Attached')}')">🎙️ Voice Note</button>`;
+        attachmentsHtml += `<button class="attachment-pill voice" onclick="playVoiceAudio('${g.id}', '${encodeURIComponent(g.voiceSnippet || 'Audio Statement Attached')}', '${encodeURIComponent(g.voiceBase64 || '')}')">🎙️ Voice Note</button>`;
       }
       if (hasPhoto) {
-        attachmentsHtml += `<button class="attachment-pill photo" onclick="viewPhotoEvidence('${g.id}', '${encodeURIComponent(g.title)}')">📸 Photos</button>`;
+        const pData = g.photoBase64 || (g.photos && g.photos.length > 0 ? g.photos[0] : '');
+        attachmentsHtml += `<button class="attachment-pill photo" onclick="viewPhotoEvidence('${g.id}', '${encodeURIComponent(g.title || '')}', '${encodeURIComponent(pData)}')">📸 Photos</button>`;
       }
       attachmentsHtml += '</div>';
     }
@@ -1019,22 +1020,49 @@ function filterMembers() {
 // ----------------------------------------------------
 // VOICE & PHOTO MODALS
 // ----------------------------------------------------
-function playVoiceAudio(id, snippet) {
-  const decoded = decodeURIComponent(snippet || 'Attached Voice Statement');
-  document.getElementById('audio-modal-snippet').innerText = `Grievance: ${id} — ${decoded}`;
+function playVoiceAudio(id, snippet, encodedAudio) {
+  const decodedSnippet = decodeURIComponent(snippet || 'Attached Voice Statement');
+  const audioData = encodedAudio ? decodeURIComponent(encodedAudio) : '';
+  
+  document.getElementById('audio-modal-snippet').innerText = `Grievance: ${id} — ${decodedSnippet}`;
+  const player = document.getElementById('audio-player-element');
+  
+  if (player) {
+    if (audioData && audioData.startsWith('data:audio')) {
+      player.src = audioData;
+      player.load();
+      player.play().catch(e => console.log('Audio autoplay prevented or error:', e));
+    } else {
+      player.removeAttribute('src');
+      player.load();
+    }
+  }
+  
   document.getElementById('modal-audio').classList.add('active');
 }
 
 function closeAudioModal() {
   const audio = document.getElementById('audio-player-element');
-  if (audio) audio.pause();
+  if (audio) {
+    audio.pause();
+    audio.removeAttribute('src');
+  }
   document.getElementById('modal-audio').classList.remove('active');
 }
 
-function viewPhotoEvidence(id, title) {
-  const decoded = decodeURIComponent(title || 'Evidence Photo');
-  document.getElementById('photo-modal-caption').innerText = `Complaint ${id}: ${decoded}`;
-  document.getElementById('photo-viewer-img').src = '/logos/inc_logo.png';
+function viewPhotoEvidence(id, title, encodedPhoto) {
+  const decodedTitle = decodeURIComponent(title || 'Evidence Photo');
+  const photoData = encodedPhoto ? decodeURIComponent(encodedPhoto) : '';
+  
+  document.getElementById('photo-modal-caption').innerText = `Complaint ${id}: ${decodedTitle}`;
+  const img = document.getElementById('photo-viewer-img');
+  
+  if (photoData && photoData.startsWith('data:image')) {
+    img.src = photoData;
+  } else {
+    img.src = '/logos/inc_logo.png';
+  }
+  
   document.getElementById('modal-photo').classList.add('active');
 }
 

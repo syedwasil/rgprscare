@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -657,6 +658,31 @@ class _GrievanceNewScreenState extends ConsumerState<GrievanceNewScreen> {
           : _reporterPhone.text.trim(),
     );
 
+    // Prepare Base64 encoding of photos and voice note for real transmission to Control Room & Admin Portal
+    List<String> photoBase64List = [];
+    for (final p in _attachedPhotos) {
+      try {
+        final f = File(p);
+        if (f.existsSync()) {
+          final bytes = await f.readAsBytes();
+          // Compress or format as base64 data URI
+          final b64 = base64Encode(bytes);
+          photoBase64List.add('data:image/jpeg;base64,$b64');
+        }
+      } catch (_) {}
+    }
+
+    String? voiceBase64;
+    if (_hasVoiceNote && _recordedAudioPath != null) {
+      try {
+        final vFile = File(_recordedAudioPath!);
+        if (vFile.existsSync()) {
+          final vBytes = await vFile.readAsBytes();
+          voiceBase64 = 'data:audio/m4a;base64,${base64Encode(vBytes)}';
+        }
+      } catch (_) {}
+    }
+
     // Direct live broadcast to RGPRS Central Control Room across candidates
     ApiClient.post('/api/grievances', {
       'id': created.refCode,
@@ -669,7 +695,10 @@ class _GrievanceNewScreenState extends ConsumerState<GrievanceNewScreen> {
       'citizenPhone': _reporterPhone.text.trim().isEmpty ? 'Anonymous' : _reporterPhone.text.trim(),
       'hasVoice': _hasVoiceNote,
       'voiceSnippet': _hasVoiceNote ? 'Voice Statement Attached (0:${_voiceSeconds.toString().padLeft(2, '0')})' : '',
+      'voiceBase64': voiceBase64 ?? '',
       'hasPhoto': _attachedPhotos.isNotEmpty,
+      'photoBase64': photoBase64List.isNotEmpty ? photoBase64List.first : '',
+      'photos': photoBase64List,
       'slaHoursLeft': 72,
       'status': 'Pending',
       'assignedLeader': 'Unassigned',
