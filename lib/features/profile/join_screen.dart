@@ -15,7 +15,11 @@ import '../shared/picker_sheet.dart';
 String roleLabel(BuildContext context, MemberRole role) =>
     AppStrings.of(context).t(role.labelKey);
 
-/// Join / edit form for the device owner's RGPRS membership.
+/// Upgraded Join / Edit form for RGPRS & INC Digital Membership:
+/// - Real-time live digital card preview that updates as user types!
+/// - Neumorphic design with Congress & RGPRS dual emblem
+/// - Seamless district and constitutional PRI role picker
+/// - Automatic synchronization with Web Admin Control Room
 class JoinScreen extends ConsumerStatefulWidget {
   const JoinScreen({super.key});
 
@@ -37,6 +41,15 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
   void initState() {
     super.initState();
     _prefill();
+    _name.addListener(() => setState(() {}));
+    _phone.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _phone.dispose();
+    super.dispose();
   }
 
   Future<void> _prefill() async {
@@ -51,34 +64,20 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
     _phone.text = existing.phone ?? '';
     _role = existing.role;
 
-    final districts = await ref.read(districtsProvider.future);
-    if (!mounted) return;
-    OrgUnit? match;
-    for (final unit in districts) {
-      if (unit.id == existing.unitId) {
-        match = unit;
-        break;
-      }
+    if (existing.unitId != null) {
+      final unit = await ref.read(orgRepositoryProvider).byId(existing.unitId!);
+      if (mounted) _area = unit;
     }
-    setState(() {
-      _area = match;
-      _loaded = true;
-    });
-  }
 
-  @override
-  void dispose() {
-    _name.dispose();
-    _phone.dispose();
-    super.dispose();
+    if (mounted) setState(() => _loaded = true);
   }
 
   @override
   Widget build(BuildContext context) {
     final s = AppStrings.of(context);
-    final districts = ref.watch(districtsProvider);
 
     return Scaffold(
+      backgroundColor: AppColors.canvas,
       appBar: AppBar(
         title: Text(
           s.joinRgprs,
@@ -94,31 +93,142 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
           : Form(
               key: _formKey,
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(16, 14, 16, 100),
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 12,
+                  // 1. Live Digital Card Preview
+                  NeoSurface(
+                    padding: EdgeInsets.zero,
+                    borderRadius: 20,
+                    elevation: 1.2,
+                    child: Column(
+                      children: [
+                        const TricolorStripe(height: 5, borderRadius: 0),
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const DualPartyEmblem(size: 38),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'INDIAN NATIONAL CONGRESS',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w900,
+                                            color: AppColors.partyBlue,
+                                            letterSpacing: 0.8,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Rajiv Gandhi Panchayati Raj Sangathan • J&K',
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.mutedInk,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: _role.isElectedRole
+                                          ? const Color(0xFFFFF3E0)
+                                          : AppColors.greenLight,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Text(
+                                      _role.isElectedRole ? 'PRI PENDING' : 'CITIZEN PASS',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w900,
+                                        color: _role.isElectedRole
+                                            ? AppColors.saffronDeep
+                                            : AppColors.greenDeep,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 14),
+                              Text(
+                                _name.text.trim().isEmpty ? 'Your Full Name' : _name.text.trim(),
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w900,
+                                  color: _name.text.trim().isEmpty ? AppColors.mutedInk : AppColors.ink,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Row(
+                                children: [
+                                  Text(
+                                    roleLabel(context, _role),
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w800,
+                                      color: AppColors.partyBlue,
+                                    ),
+                                  ),
+                                  const Text(' • ', style: TextStyle(color: AppColors.mutedInk)),
+                                  Text(
+                                    _area?.nameEn ?? 'Select District',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.mutedInk,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              if (_phone.text.trim().isNotEmpty) ...[
+                                const SizedBox(height: 3),
+                                Text(
+                                  '📞 +91 ${_phone.text.trim()}',
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.mutedInk,
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // 2. Info Banner
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                     decoration: BoxDecoration(
-                      color: AppColors.partyBlueLight,
+                      color: AppColors.partyBlueLight.withAlpha(50),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: AppColors.partyBlue.withValues(alpha: 0.25),
+                        color: AppColors.partyBlue.withAlpha(60),
                         width: 1.2,
                       ),
                     ),
                     child: const Row(
                       children: [
-                        DualPartyEmblem(size: 34),
+                        Icon(Icons.shield_outlined, size: 24, color: AppColors.partyBlue),
                         SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'J&K Citizen & RGPRS Registration',
+                                'J&K Citizen & RGPRS Membership Pass',
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w900,
@@ -127,7 +237,7 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                               ),
                               SizedBox(height: 2),
                               Text(
-                                'Open registration for all citizens of Jammu & Kashmir. Elected PRI roles (Sarpanch, BDC, DDC) require verification.',
+                                'Open registration for all citizens of Jammu & Kashmir. Provides verified identity for Jan Sunwai, smart meter petitions & PRI representation.',
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: AppColors.mutedInk,
@@ -140,7 +250,10 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 18),
+
+                  const SizedBox(height: 20),
+
+                  // 3. Name Field
                   NeoTextField(
                     controller: _name,
                     labelText: s.fullName,
@@ -152,7 +265,10 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                             ? s.nameRequired
                             : null,
                   ),
+
                   const SizedBox(height: 16),
+
+                  // 4. Phone Field
                   NeoTextField(
                     controller: _phone,
                     labelText: s.phone,
@@ -167,8 +283,10 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                           : s.phoneInvalid;
                     },
                   ),
+
                   const SizedBox(height: 16),
-                  // Role picker card
+
+                  // 5. Role picker card
                   NeoCard(
                     padding: const EdgeInsets.all(14),
                     onTap: () async {
@@ -222,8 +340,8 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                               ),
                               Text(
                                 _role.isElectedRole
-                                    ? 'Constitutional PRI Role • Pending verification'
-                                    : 'General Public / Volunteer Enrollment',
+                                    ? 'Constitutional PRI Role • Pending State Desk Verification'
+                                    : 'General Citizen / Volunteer Pass',
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
@@ -242,6 +360,7 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                       ],
                     ),
                   ),
+
                   if (_role.isElectedRole) ...[
                     const SizedBox(height: 10),
                     Container(
@@ -249,21 +368,18 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFF8E1),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color(0xFFFFB300).withValues(alpha: 0.5),
-                        ),
+                        border: Border.all(color: AppColors.saffronDeep.withAlpha(80)),
                       ),
                       child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.shield_outlined,
-                              size: 20, color: Color(0xFFE65100)),
-                          SizedBox(width: 10),
+                          Icon(Icons.warning_amber_rounded, size: 18, color: AppColors.saffronDeep),
+                          SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              'Political & PRI Verification: As an elected representative (Sarpanch/BDC/DDC), your membership profile will be submitted to the INC & RGPRS District Returning Officer for authentication of your election gazette / certificate.',
+                              'PRI verification: Your credential will be verified against the official J&K State Election Gazette before the golden verified badge is issued.',
                               style: TextStyle(
                                 fontSize: 11,
+                                fontWeight: FontWeight.w600,
                                 color: Color(0xFF5D4037),
                                 height: 1.3,
                               ),
@@ -273,28 +389,26 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
                       ),
                     ),
                   ],
-                  // Area/District picker card
-                  Builder(
-                    builder: (context) {
-                      final units = (districts.value?.isNotEmpty ?? false)
-                          ? districts.value!
-                          : jkAllDistricts;
+
+                  const SizedBox(height: 16),
+
+                  // 6. District / Area Picker
+                  Consumer(
+                    builder: (context, ref, _) {
+                      final units = ref.watch(orgChildrenProvider(jkStateUnitId)).maybeWhen(
+                            data: (list) => list,
+                            orElse: () => const <OrgUnit>[],
+                          );
+
                       return NeoCard(
                         padding: const EdgeInsets.all(14),
                         onTap: () async {
                           final chosen = await showOptionsSheet<OrgUnit>(
                             context: context,
-                            title: 'Select J&K District (ضلع منتخب کریں)',
+                            title: s.area,
                             options: units,
                             selected: _area,
-                            label: (unit) {
-                              final sec = (unit.nameUr?.isNotEmpty ?? false)
-                                  ? unit.nameUr!
-                                  : (unit.nameHi ?? '');
-                              return sec.isNotEmpty
-                                  ? '${unit.nameEn} ($sec)'
-                                  : unit.nameEn;
-                            },
+                            label: (unit) => '${unit.nameEn} (${unit.localizedName(s)})',
                           );
                           if (chosen != null) setState(() => _area = chosen);
                         },
@@ -380,10 +494,11 @@ class _JoinScreenState extends ConsumerState<JoinScreen> {
 
     final memberData = {
       'fullName': _name.text.trim(),
+      'name': _name.text.trim(),
       'role': _role.name,
       'phone': phone.isEmpty ? '' : phone,
       'district': _area?.nameEn ?? 'Jammu & Kashmir',
-      'status': 'verified',
+      'status': _role.isElectedRole ? 'pending' : 'verified',
     };
     ApiClient.post('/api/members', memberData).catchError((_) => false);
 

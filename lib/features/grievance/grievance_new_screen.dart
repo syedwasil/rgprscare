@@ -684,7 +684,7 @@ class _GrievanceNewScreenState extends ConsumerState<GrievanceNewScreen> {
     }
 
     // Direct live broadcast to RGPRS Central Control Room across candidates
-    ApiClient.post('/api/grievances', {
+    await ApiClient.post('/api/grievances', {
       'id': created.refCode,
       'title': _title.text.trim(),
       'description': combinedDescription,

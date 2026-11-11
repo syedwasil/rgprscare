@@ -25,6 +25,7 @@ class UnitChildrenScreen extends ConsumerWidget {
 
     return unit.when(
       loading: () => const Scaffold(
+        backgroundColor: AppColors.canvas,
         body: Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.partyBlue),
@@ -32,12 +33,14 @@ class UnitChildrenScreen extends ConsumerWidget {
         ),
       ),
       error: (error, stack) => Scaffold(
+        backgroundColor: AppColors.canvas,
         appBar: AppBar(),
         body: Center(child: Text('$error')),
       ),
       data: (resolved) {
         if (resolved == null) {
           return Scaffold(
+            backgroundColor: AppColors.canvas,
             appBar: AppBar(),
             body: const Center(
               child: Text(
@@ -53,6 +56,7 @@ class UnitChildrenScreen extends ConsumerWidget {
             : null;
 
         return Scaffold(
+          backgroundColor: AppColors.canvas,
           appBar: AppBar(
             title: Text(
               resolved.localizedName(s),

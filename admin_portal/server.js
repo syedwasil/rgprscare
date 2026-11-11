@@ -191,8 +191,10 @@ const server = http.createServer((req, res) => {
               if (match) voiceSnippet = match[1];
             }
 
-            db.grievances.unshift({
+            const existingIndex = db.grievances.findIndex(x => (x.id && (x.id === p.refCode || x.id === op.entityId)) || (x.refCode && x.refCode === p.refCode));
+            const grievanceObj = {
               id: p.refCode || op.entityId || 'GRV-2026-' + (db.grievances.length + 81),
+              refCode: p.refCode,
               title: p.title || 'Untitled Grievance',
               category: p.category ? (p.category.charAt(0).toUpperCase() + p.category.slice(1)) : 'General',
               district: formattedDistrict,
@@ -212,7 +214,13 @@ const server = http.createServer((req, res) => {
               status: 'Pending',
               assignedLeader: 'Unassigned',
               notes: 'Synced from RGPRS J&K Mobile App'
-            });
+            };
+
+            if (existingIndex !== -1) {
+              db.grievances[existingIndex] = { ...db.grievances[existingIndex], ...grievanceObj };
+            } else {
+              db.grievances.unshift(grievanceObj);
+            }
           }
 
           // B. Memberships & PRI
@@ -513,10 +521,20 @@ const server = http.createServer((req, res) => {
               item.memberCode = item.memberCode || ('INC-JK-26-' + Math.floor(1000 + Math.random() * 9000));
               item.status = item.status || 'verified';
             }
-            db[collectionKey].unshift(item);
-            saveDb();
-            res.writeHead(201, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(item));
+            const existingIdx = db[collectionKey].findIndex(x => (x.id && x.id === item.id) || (x.refCode && item.refCode && x.refCode === item.refCode));
+            if (existingIdx !== -1) {
+              db[collectionKey][existingIdx] = { ...db[collectionKey][existingIdx], ...item };
+              saveDb();
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify(db[collectionKey][existingIdx]));
+              return;
+            } else {
+              db[collectionKey].unshift(item);
+              saveDb();
+              res.writeHead(201, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify(item));
+              return;
+            }
           } catch (e) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Invalid create payload: ' + e.message }));

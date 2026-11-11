@@ -170,10 +170,6 @@ class DriftNoticeRepository implements NoticeRepository {
       ..orderBy([
         (t) => OrderingTerm(expression: t.createdAt, mode: OrderingMode.desc),
       ]);
-    final initial = await query.get();
-    if (initial.isEmpty) {
-      await _seedDefaultNotices();
-    }
 
     try {
       await syncRemoteNotices().timeout(const Duration(milliseconds: 2500));
@@ -227,52 +223,6 @@ class DriftNoticeRepository implements NoticeRepository {
         }
       }
     } catch (_) {}
-  }
-
-  Future<void> _seedDefaultNotices() async {
-    final seeds = [
-      (
-        id: 'ntc-winter-sos-01',
-        title: 'Chilla-i-Kalan Emergency Snow Clearance & Stretcher Helpline 24x7',
-        body:
-            'All 20 District Congress & RGPRS Control Rooms are operational across high-altitude cut-off passes (Sadhna, Razdan, Sinthan, Mughal Road). Village stretcher squads are on standby to transport patients to nearest SDH/GMC.',
-        priority: NoticePriority.urgent,
-        author: 'RGPRS & JKPCC Citizen Care HQ',
-        hoursAgo: 2,
-      ),
-      (
-        id: 'ntc-meter-dispute-02',
-        title: 'Resolution on Smart Meter Billing Grievances & PDD Representation',
-        body:
-            'Citizens facing inflated electric bills or faulty digital meters can register disputes directly through the app. RGPRS legal coordinators are filing joint representations before the Joint Electricity Regulatory Commission and DC offices.',
-        priority: NoticePriority.normal,
-        author: 'JKPCC Energy & Public Welfare Cell',
-        hoursAgo: 14,
-      ),
-      (
-        id: 'ntc-youth-jobs-03',
-        title: '1-Lakh Vacancy Restoration Youth Assembly Petition Drive',
-        body:
-            'Sign the youth memorandum in the Education & Youth wing of the app demanding immediate advertisement of vacant posts in JKSSB and JKPSC, strict anti-paper leak enforcement, and ₹3,000 monthly educated youth allowance.',
-        priority: NoticePriority.normal,
-        author: 'Rajiv Gandhi Panchayati Raj Sangathan Youth Mission',
-        hoursAgo: 28,
-      ),
-    ];
-
-    for (final s in seeds) {
-      final created = _now().subtract(Duration(hours: s.hoursAgo));
-      await _db.into(_db.notices).insert(
-            NoticesCompanion.insert(
-              id: s.id,
-              title: s.title,
-              body: s.body,
-              priority: s.priority.name,
-              authorName: s.author,
-              createdAt: created,
-            ),
-          );
-    }
   }
 
   @override

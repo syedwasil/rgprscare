@@ -16,83 +16,89 @@ class OrgTreeScreen extends ConsumerWidget {
     final s = AppStrings.of(context);
     final divisions = ref.watch(orgChildrenProvider(jkStateUnitId));
 
-    return divisions.when(
-      loading: () => const Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppColors.partyBlue),
-        ),
+    return Scaffold(
+      backgroundColor: AppColors.canvas,
+      appBar: AppBar(
+        title: const Text('Organizational Units'),
       ),
-      error: (error, stack) => _ErrorState(message: '$error'),
-      data: (units) => ListView(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 32),
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: NeoCard(
-              padding: const EdgeInsets.all(16),
+      body: divisions.when(
+        loading: () => const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.partyBlue),
+          ),
+        ),
+        error: (error, stack) => _ErrorState(message: '$error'),
+        data: (units) => ListView(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 32),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: NeoCard(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    const CongressEmblem(size: 40),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Panchayati Raj Sangathan',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.ink,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            '${s.jammuKashmir} • Regional Structure',
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.partyBlue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18, 4, 18, 6),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CongressEmblem(size: 40),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Panchayati Raj Sangathan',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.ink,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          '${s.jammuKashmir} • Regional Structure',
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.partyBlue,
-                          ),
-                        ),
-                      ],
+                  const Text(
+                    'DIVISIONS & DISTRICTS',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.mutedInk,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                  Text(
+                    '${units.length} Divisions',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.partyBlue,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18, 4, 18, 6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'DIVISIONS & DISTRICTS',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w900,
-                    color: AppColors.mutedInk,
-                    letterSpacing: 0.8,
-                  ),
-                ),
-                Text(
-                  '${units.length} Divisions',
-                  style: const TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.partyBlue,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (units.isEmpty)
-            _EmptyState(message: s.noUnits)
-          else
-            for (final unit in units) UnitTile(unit: unit),
-        ],
+            if (units.isEmpty)
+              _EmptyState(message: s.noUnits)
+            else
+              for (final unit in units) UnitTile(unit: unit),
+          ],
+        ),
       ),
     );
   }

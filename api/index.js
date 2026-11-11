@@ -219,8 +219,10 @@ module.exports = async function handler(req, res) {
           if (match) voiceSnippet = match[1];
         }
 
-        db.grievances.unshift({
+        const existingIndex = db.grievances.findIndex(x => (x.id && (x.id === p.refCode || x.id === op.entityId)) || (x.refCode && x.refCode === p.refCode));
+        const grievanceObj = {
           id: p.refCode || op.entityId || 'GRV-2026-' + (db.grievances.length + 81),
+          refCode: p.refCode,
           title: p.title || 'Untitled Grievance',
           category: p.category ? (p.category.charAt(0).toUpperCase() + p.category.slice(1)) : 'General',
           district: formattedDistrict,
@@ -240,7 +242,13 @@ module.exports = async function handler(req, res) {
           status: 'Pending',
           assignedLeader: 'Unassigned',
           notes: 'Synced from RGPRS J&K Mobile App'
-        });
+        };
+
+        if (existingIndex !== -1) {
+          db.grievances[existingIndex] = { ...db.grievances[existingIndex], ...grievanceObj };
+        } else {
+          db.grievances.unshift(grievanceObj);
+        }
       }
 
       if (op.entity === 'member' && op.payload) {
@@ -419,11 +427,20 @@ module.exports = async function handler(req, res) {
           id: newId,
           createdAt: bodyObj.createdAt || new Date().toISOString()
         };
-        db[dbKey].unshift(newItem);
-        saveDb();
-        res.writeHead(201, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(newItem));
-        return;
+        const existingIdx = db[dbKey].findIndex(item => String(item.id) === String(newId));
+        if (existingIdx !== -1) {
+          db[dbKey][existingIdx] = { ...db[dbKey][existingIdx], ...newItem };
+          saveDb();
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(db[dbKey][existingIdx]));
+          return;
+        } else {
+          db[dbKey].unshift(newItem);
+          saveDb();
+          res.writeHead(201, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(newItem));
+          return;
+        }
       }
     }
   }

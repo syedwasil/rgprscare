@@ -19,16 +19,21 @@ void main() {
     await db.close();
   });
 
-  test('NoticeRepository auto-seeds official authentic public circulars on first launch', () async {
+  test('NoticeRepository handles notices and sync cleanly without dummy seed notices', () async {
+    // When no notices are seeded or present, notices list is empty initially
     final notices = await repo.all();
-    expect(notices.length, greaterThanOrEqualTo(3));
+    expect(notices, isA<List<Notice>>());
 
-    final winterSos = notices.firstWhere((n) => n.id == 'ntc-winter-sos-01');
-    expect(winterSos.title, contains('Chilla-i-Kalan Emergency Snow Clearance'));
-    expect(winterSos.priority, equals(NoticePriority.urgent));
+    // Creating a real notice persists and can be queried
+    final created = await repo.create(
+      title: 'AICC Official JKPCC Session Circular',
+      body: 'Meeting scheduled at Srinagar Party Headquarters.',
+      priority: NoticePriority.urgent,
+      authorName: 'JKPCC President',
+    );
 
-    final meterNotice = notices.firstWhere((n) => n.id == 'ntc-meter-dispute-02');
-    expect(meterNotice.title, contains('Smart Meter Billing Grievances'));
+    final updatedNotices = await repo.all();
+    expect(updatedNotices.any((n) => n.id == created.id), isTrue);
   });
 
   test('HttpSyncTransport initializes with default production ports', () {

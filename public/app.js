@@ -507,11 +507,10 @@ function filterGrievances() {
     if (hasVoice || hasPhoto) {
       attachmentsHtml = '<div style="display:flex; gap:6px; flex-wrap:wrap;">';
       if (hasVoice) {
-        attachmentsHtml += `<button class="attachment-pill voice" onclick="playVoiceAudio('${g.id}', '${encodeURIComponent(g.voiceSnippet || 'Audio Statement Attached')}', '${encodeURIComponent(g.voiceBase64 || '')}')">🎙️ Voice Note</button>`;
+        attachmentsHtml += `<button class="attachment-pill voice" onclick="playVoiceAudio('${g.id}')">🎙️ Voice Note</button>`;
       }
       if (hasPhoto) {
-        const pData = g.photoBase64 || (g.photos && g.photos.length > 0 ? g.photos[0] : '');
-        attachmentsHtml += `<button class="attachment-pill photo" onclick="viewPhotoEvidence('${g.id}', '${encodeURIComponent(g.title || '')}', '${encodeURIComponent(pData)}')">📸 Photos</button>`;
+        attachmentsHtml += `<button class="attachment-pill photo" onclick="viewPhotoEvidence('${g.id}')">📸 Photos</button>`;
       }
       attachmentsHtml += '</div>';
     }
@@ -1020,11 +1019,12 @@ function filterMembers() {
 // ----------------------------------------------------
 // VOICE & PHOTO MODALS
 // ----------------------------------------------------
-function playVoiceAudio(id, snippet, encodedAudio) {
-  const decodedSnippet = decodeURIComponent(snippet || 'Attached Voice Statement');
-  const audioData = encodedAudio ? decodeURIComponent(encodedAudio) : '';
+function playVoiceAudio(id) {
+  const item = (store['grievances'] || []).find(x => String(x.id) === String(id));
+  const snippet = item ? (item.voiceSnippet || item.title || 'Attached Voice Statement') : 'Attached Voice Statement';
+  const audioData = item ? (item.voiceBase64 || '') : '';
   
-  document.getElementById('audio-modal-snippet').innerText = `Grievance: ${id} — ${decodedSnippet}`;
+  document.getElementById('audio-modal-snippet').innerText = `Grievance: ${id} — ${snippet}`;
   const player = document.getElementById('audio-player-element');
   
   if (player) {
@@ -1050,11 +1050,12 @@ function closeAudioModal() {
   document.getElementById('modal-audio').classList.remove('active');
 }
 
-function viewPhotoEvidence(id, title, encodedPhoto) {
-  const decodedTitle = decodeURIComponent(title || 'Evidence Photo');
-  const photoData = encodedPhoto ? decodeURIComponent(encodedPhoto) : '';
+function viewPhotoEvidence(id) {
+  const item = (store['grievances'] || []).find(x => String(x.id) === String(id));
+  const caption = item ? (item.title || 'Evidence Photo') : 'Evidence Photo';
+  const photoData = item ? (item.photoBase64 || (item.photos && item.photos.length > 0 ? item.photos[0] : '')) : '';
   
-  document.getElementById('photo-modal-caption').innerText = `Complaint ${id}: ${decodedTitle}`;
+  document.getElementById('photo-modal-caption').innerText = `Complaint ${id}: ${caption}`;
   const img = document.getElementById('photo-viewer-img');
   
   if (photoData && photoData.startsWith('data:image')) {

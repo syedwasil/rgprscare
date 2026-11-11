@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@600;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@600;800&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
   <!-- Indian National Congress Tricolor Ribbon -->
   <div class="tricolor-stripe">
@@ -193,7 +197,8 @@
             <div class="card-header">
               <h3>📊 Grievances by Civic Category</h3>
             </div>
-            <div style="padding: 20px; position: relative; height: 280px; display: flex; align-items: center; justify-content: center;">
+            <div
+              style="padding: 20px; position: relative; height: 280px; display: flex; align-items: center; justify-content: center;">
               <canvas id="categoryChart"></canvas>
             </div>
           </div>
@@ -737,10 +742,12 @@
         <button class="modal-close" onclick="closeAudioModal()">×</button>
       </div>
       <div class="modal-body">
-        <p id="audio-modal-snippet" style="font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px;"></p>
+        <p id="audio-modal-snippet" style="font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px;">
+        </p>
         <div class="audio-player-box">
           <span style="font-size: 32px;">📻</span>
-          <p style="font-size: 12px; color: var(--muted-ink); text-align: center;">Authentic voice statement recorded directly on citizen's mobile device.</p>
+          <p style="font-size: 12px; color: var(--muted-ink); text-align: center;">Authentic voice statement recorded
+            directly on citizen's mobile device.</p>
           <audio id="audio-player-element" controls style="width: 100%;">
             Your browser does not support the audio element.
           </audio>
@@ -773,4 +780,5 @@
 
   <script src="/app.js"></script>
 </body>
+
 </html>
