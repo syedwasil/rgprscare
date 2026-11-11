@@ -126,7 +126,7 @@ const officialCoachingBatches = <CoachingBatch>[
         'Rural & Economically Weaker Section (EWS) 11th & 12th students',
     status: 'Batch 2026-27 Enrollment Open',
     contactPerson: 'Rajiv Gandhi Study Circle Desk (Kashmir)',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
   ),
   CoachingBatch(
     exam: 'JKPSC CCE / UPSC Prelims Foundation Desk',
@@ -135,7 +135,7 @@ const officialCoachingBatches = <CoachingBatch>[
     eligibility: 'Graduates from rural panchayats and border areas',
     status: 'Test Series Active',
     contactPerson: 'INC Youth Mentorship Desk (Jammu)',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
   ),
   CoachingBatch(
     exam: 'Free College Book Bank & Study Material Distribution',
@@ -144,7 +144,7 @@ const officialCoachingBatches = <CoachingBatch>[
     eligibility: 'Any college or university student needing course textbooks',
     status: 'Permanent Free Service',
     contactPerson: 'RGPRS Youth & Student Desk',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
   ),
 ];
 
@@ -420,7 +420,7 @@ class _ScholarshipsScreenState extends State<ScholarshipsScreen>
                                     '${sc.title} - Mandatory Documents:\n'
                                     '${sc.documents.map((d) => '• $d').join('\n')}\n'
                                     'Portal: ${sc.portalUrl}\n'
-                                    'Assistance: RGPRS Student Care (0194-2452402)';
+                                    'Assistance: JKPCC Student Care (0191-2578085)';
                                 Clipboard.setData(
                                   ClipboardData(text: checklist),
                                 );
@@ -441,7 +441,7 @@ class _ScholarshipsScreenState extends State<ScholarshipsScreen>
                           const SizedBox(width: 8),
                           Expanded(
                             child: NeoButton(
-                              onPressed: () => _callContact('0194-2452402'),
+                              onPressed: () => _callContact('0191-2578085'),
                               icon: Icons.support_agent,
                               label: 'Student Cell',
                               variant: NeoButtonVariant.primary,

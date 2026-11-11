@@ -315,13 +315,13 @@ Copy to: Congress Public Electricity Redressal Cell for follow-up and representa
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'Escalate to INC Electricity Desk:',
+                        'Escalate to JKPCC Electricity Desk:',
                         style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.mutedInk),
                       ),
                       NeoButton(
-                        onPressed: () => ActionUtils.launchPhoneCall(context, '0194-2452402'),
+                        onPressed: () => ActionUtils.launchPhoneCall(context, '0191-2578085'),
                         icon: Icons.phone,
-                        label: '0194-2452402',
+                        label: '0191-2578085',
                         variant: NeoButtonVariant.surface,
                       ),
                     ],

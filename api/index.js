@@ -280,6 +280,41 @@ module.exports = async function handler(req, res) {
           db.members.unshift(memberObj);
         }
       }
+
+      // C. Notices
+      if (op.entity === 'notice' && op.payload) {
+        const n = op.payload;
+        if (!db.notices) db.notices = [];
+        const exists = db.notices.some(x => x.id === n.id);
+        if (!exists) {
+          db.notices.unshift({
+            id: n.id || 'NTC-JK-' + (db.notices.length + 501),
+            title: n.title,
+            body: n.body,
+            priority: n.priority || 'normal',
+            authorName: n.authorName || 'RGPRS App Broadcast',
+            createdAt: n.createdAt || new Date().toISOString()
+          });
+        }
+      }
+
+      // D. Blood SOS
+      if (op.entity === 'blood-sos' && op.payload) {
+        const b = op.payload;
+        if (!db.bloodSos) db.bloodSos = [];
+        db.bloodSos.unshift({
+          id: b.id || 'BLD-JK-' + (db.bloodSos.length + 101),
+          patientName: b.patientName || 'Anonymous Patient',
+          bloodGroup: b.bloodGroup || 'O+',
+          unitsNeeded: b.unitsNeeded || 1,
+          hospitalName: b.hospitalName || 'District Hospital',
+          district: b.district || 'Srinagar',
+          contactPhone: b.contactPhone || '',
+          urgency: b.urgency || 'URGENT',
+          status: 'URGENT',
+          createdAt: b.createdAt || new Date().toISOString()
+        });
+      }
     }
 
     saveDb();

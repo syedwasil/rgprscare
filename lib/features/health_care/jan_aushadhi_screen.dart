@@ -141,7 +141,7 @@ const congressHealthDesks = <HealthCampCenter>[
     organizer: 'J&K Pradesh Congress Committee Medical Wing',
     services: 'Free Doctor Consultation, Sugar/BP Screening & Free Medicine Distribution',
     address: 'Congress House, Maulana Azad Road, Srinagar',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
   ),
   HealthCampCenter(
     name: 'Congress Medical Relief Cell — Jammu HQ',
@@ -150,7 +150,7 @@ const congressHealthDesks = <HealthCampCenter>[
     services:
         'Weekly Free Medical Checkup, Specialist Advice & Patient Support',
     address: 'Congress Bhawan, Shaheedi Chowk, Jammu',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
   ),
   HealthCampCenter(
     name: 'Congress Jan Seva Arogya Desk Anantnag',
@@ -158,7 +158,7 @@ const congressHealthDesks = <HealthCampCenter>[
     organizer: 'DCC Anantnag Community Care',
     services: 'Free Diagnostics assistance, Golden Card Grievance & Generic Medicine Guidance',
     address: 'K.P. Road / Janglat Mandi, Anantnag',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
   ),
   HealthCampCenter(
     name: 'Congress Health & Rural Seva Desk Baramulla',
@@ -166,7 +166,7 @@ const congressHealthDesks = <HealthCampCenter>[
     organizer: 'Youth Congress Health Brigade',
     services: 'Emergency Ambulance Assistance & Border Area Free Medical Camps',
     address: 'Opposite Cariappa Park, Baramulla Main',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
   ),
   HealthCampCenter(
     name: 'Chenab Valley Public Medical Relief Desk',
@@ -174,7 +174,7 @@ const congressHealthDesks = <HealthCampCenter>[
     organizer: 'DCC Doda & Bhaderwah Seva Front',
     services: 'High-Altitude Patient Transport & Free Essential Drugs Camp',
     address: 'Main Bus Stand Road, Doda Town',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
   ),
   HealthCampCenter(
     name: 'Poonch-Rajouri Border Area Medical Desk',
@@ -182,7 +182,7 @@ const congressHealthDesks = <HealthCampCenter>[
     organizer: 'Rajiv Gandhi Tribal Healthcare Mission',
     services: 'Mobile Medical Camps in Border and Gujjar-Bakerwal Settlements',
     address: 'Gujjar Mandi, Rajouri Town',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
   ),
 ];
 
@@ -313,7 +313,7 @@ class _JanAushadhiScreenState extends State<JanAushadhiScreen>
                           ),
                           const SizedBox(height: 8),
                           InkWell(
-                            onTap: () => _callNumber('0194-2452402'),
+                            onTap: () => _callNumber('0191-2578085'),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 10,
@@ -333,7 +333,7 @@ class _JanAushadhiScreenState extends State<JanAushadhiScreen>
                                   ),
                                   SizedBox(width: 6),
                                   Text(
-                                    'Congress Medical Desk: 0194-2452402',
+                                    'Congress Medical Desk: 0191-2578085',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11,

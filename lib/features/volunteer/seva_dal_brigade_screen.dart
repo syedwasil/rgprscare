@@ -26,14 +26,14 @@ const sevaBrigadeUnits = <SevaBrigadeUnit>[
     district: 'Srinagar',
     captain: 'Congress Seva Dal Central Kashmir Brigade (M.A. Road)',
     activeVolunteers: 120,
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     services: ['Emergency Hospital Blood Runs', 'Bedridden Life-Certificate Assistance', 'Winter Relief & Warm Clothing'],
   ),
   SevaBrigadeUnit(
     district: 'Jammu',
     captain: 'Youth Congress Seva Taskforce (Shaheedi Chowk)',
     activeVolunteers: 145,
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     services: ['GMC Jammu Blood Donor Coordination', 'Pension Camp Volunteering', 'Border Area Public Care'],
   ),
   SevaBrigadeUnit(

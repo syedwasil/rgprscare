@@ -100,11 +100,12 @@ const allHelplines = <HelplineContact>[
   HelplineContact(
     title: 'Jal Shakti (PHE) Jammu Control',
     subtitle: 'Tubewell, pipeline, and clean drinking water complaints',
-    phone: '0191-2544256',
+    phone: '1800-180-7045',
+    alternatePhone: '0191-2479122',
     category: HelplineCategory.water,
     region: 'Jammu Division',
     icon: Icons.water_drop,
-    isTollFree: false,
+    isTollFree: true,
   ),
 
   // Disaster, Weather & Highway Traffic
@@ -157,31 +158,31 @@ const allHelplines = <HelplineContact>[
 
   // Congress Jan Seva Desks
   HelplineContact(
-    title: 'INC J&K State Control Room (Srinagar HQ)',
-    subtitle: 'Congress House, M.A. Road — Citizen grievance escalation & legal aid',
-    phone: '0194-2452402',
-    alternatePhone: '0194-2475001',
-    category: HelplineCategory.partyHelpDesk,
-    region: 'Kashmir Division',
-    icon: Icons.back_hand,
-    isTollFree: false,
-  ),
-  HelplineContact(
     title: 'INC J&K State Control Room (Jammu HQ)',
-    subtitle: 'Congress Bhawan, Shaheedi Chowk — Public welfare & RTI help desk',
-    phone: '0191-2544256',
-    alternatePhone: '0191-2578500',
+    subtitle: 'Congress Bhawan, Shaheedi Chowk — Public welfare, RTI & citizen legal aid',
+    phone: '0191-2578085',
+    alternatePhone: '0191-2565410',
     category: HelplineCategory.partyHelpDesk,
-    region: 'Jammu Division',
+    region: 'All J&K',
     icon: Icons.back_hand,
     isTollFree: false,
   ),
   HelplineContact(
-    title: 'INC J&K Central Care & Jan Sunwai Desk',
-    subtitle: 'Centralized citizen grievance redressal & RGPRS coordination',
-    phone: '0194-2452402',
+    title: 'AICC Central Control Room (New Delhi)',
+    subtitle: 'All India Congress Committee, 24 Akbar Road / Indira Bhawan',
+    phone: '011-23019080',
+    alternatePhone: '011-65206520',
     category: HelplineCategory.partyHelpDesk,
+    region: 'National',
     icon: Icons.support_agent,
+    isTollFree: false,
+  ),
+  HelplineContact(
+    title: 'INC J&K State President Office',
+    subtitle: 'President JKPCC Legislative & Public Grievance Desk',
+    phone: '9419204032',
+    category: HelplineCategory.partyHelpDesk,
+    icon: Icons.person_pin,
     isTollFree: false,
   ),
 ];

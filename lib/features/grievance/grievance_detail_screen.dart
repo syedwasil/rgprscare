@@ -140,9 +140,9 @@ class GrievanceDetailScreen extends ConsumerWidget {
                 runSpacing: 10,
                 children: [
                   NeoButton(
-                    onPressed: () => ActionUtils.launchPhoneCall(context, '0194-2452402'),
+                    onPressed: () => ActionUtils.launchPhoneCall(context, '0191-2578085'),
                     icon: Icons.call,
-                    label: 'Call Helpdesk (0194-2452402)',
+                    label: 'Call Helpdesk (0191-2578085)',
                     variant: NeoButtonVariant.primary,
                   ),
                   if (record.isOpen)

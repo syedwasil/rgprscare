@@ -102,10 +102,16 @@ class NoticesScreen extends ConsumerWidget {
             );
           }
 
-          return ListView.builder(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 110),
-            itemCount: items.length,
-            itemBuilder: (context, index) {
+          return RefreshIndicator(
+            color: AppColors.partyBlue,
+            onRefresh: () async {
+              ref.invalidate(noticeListProvider);
+              await ref.read(noticeListProvider.future);
+            },
+            child: ListView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 14, 16, 110),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
               final notice = items[index];
               final isUrgent = notice.priority == NoticePriority.urgent;
 
@@ -224,8 +230,9 @@ class NoticesScreen extends ConsumerWidget {
                 ),
               );
             },
-          );
-        },
+          ),
+        );
+      },
       ),
     );
   }

@@ -72,7 +72,7 @@ const allWelfareSchemes = <WelfareScheme>[
     howToApply:
         'Submit Form-6 (Work Demand) to your Panchayat Secretary (VLW) or BDO office. If denied work within 15 days, contact INC Jan Seva Desk to claim mandatory cash Unemployment Allowance.',
     officialPortalOrOffice: 'Halqa Panchayat Secretary / Block Development Officer (BDO)',
-    helpline: '0194-2452402 (INC Jan Seva) / 1800-180-7045 (RDD)',
+    helpline: '1800-180-7045 (RDD) / 0191-2578085 (INC Jan Seva)',
   ),
 
   WelfareScheme(
@@ -99,8 +99,8 @@ const allWelfareSchemes = <WelfareScheme>[
     ],
     howToApply:
         'Verify your quota online at jk.epds.nic.in. If the local fair price dealer cuts ration or overcharges, file an instant grievance via INC Care Desk to mandate immediate delivery.',
-    officialPortalOrOffice: 'Tehsil Supply Officer (TSO) / jk.epds.nic.in',
-    helpline: '1967 (Consumer Helpline) / 0194-2452402',
+    officialPortalOrOffice: 'Tehsil Supply Officer (TSSO) / jk.epds.nic.in',
+    helpline: '1967 (Consumer Toll-Free) / 0191-2578085',
   ),
 
   WelfareScheme(
@@ -128,7 +128,7 @@ const allWelfareSchemes = <WelfareScheme>[
     howToApply:
         'Submit claim form to the Village Forest Rights Committee (FRC) of your Gram Sabha. INC Tribal Rights Cell provides free legal assistance if Forest Department issues illegal eviction notices.',
     officialPortalOrOffice: 'Sub-Divisional Level Committee (SDLC) / Tehsildar',
-    helpline: '0194-2452402 (INC Tribal Rights Desk)',
+    helpline: '0191-2578085 (INC Tribal Rights Desk) / 0194-2506429',
   ),
 
   WelfareScheme(
@@ -243,6 +243,6 @@ const allWelfareSchemes = <WelfareScheme>[
     howToApply:
         'Panchayati representatives and citizens can access RGPRS training manuals, legal protection, and honorarium grievance escalation through this app.',
     officialPortalOrOffice: 'Rajiv Gandhi Panchayati Raj Sangathan (RGPRS) State Desk',
-    helpline: '0194-2452402',
+    helpline: '0191-2578085',
   ),
 ];

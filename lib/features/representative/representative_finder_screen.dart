@@ -31,7 +31,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'Assembly & State Unit',
     district: 'Srinagar',
     area: 'Central Shalteng / Srinagar',
-    phone: null, // Personal contact private
+    phone: '9419204032',
     partyDesignation: 'President, J&K Pradesh Congress Committee',
   ),
   RepresentativeContact(
@@ -40,7 +40,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Srinagar',
     area: 'Congress House, Maulana Azad Road, Srinagar',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC Public Grievance & Citizen Desk',
   ),
   RepresentativeContact(
@@ -49,7 +49,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'Halqa & Ward Care',
     district: 'Srinagar',
     area: 'Harwan / Khonmoh / Faqir Gujri',
-    phone: '0194-2452402',
+    phone: null, // Personal contact private
     partyDesignation: 'Rajiv Gandhi Panchayati Raj Sangathan Desk',
   ),
 
@@ -60,7 +60,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Ganderbal',
     area: 'Main Market, Beehama Chowk, Ganderbal',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC District Public Relief Desk',
   ),
   RepresentativeContact(
@@ -80,7 +80,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Budgam',
     area: 'Near New Bus Stand, Budgam Main Town',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC District Grievance Cell',
   ),
   RepresentativeContact(
@@ -99,18 +99,27 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     role: 'MLA Anantnag / Senior Leader JKPCC',
     tier: 'Assembly & State Unit',
     district: 'Anantnag',
-    area: 'Anantnag / Dooru Constituency',
-    phone: null, // Personal contact private
+    area: 'Anantnag Constituency',
+    phone: '9419000703',
     partyDesignation: 'Senior Vice President, JKPCC',
+  ),
+  RepresentativeContact(
+    name: 'Ghulam Ahmad Mir',
+    role: 'MLA Dooru / CWC Member',
+    tier: 'Assembly & AICC Leadership',
+    district: 'Anantnag',
+    area: 'Dooru / Anantnag',
+    phone: '9419000896',
+    partyDesignation: 'Member, Congress Working Committee (CWC)',
   ),
   RepresentativeContact(
     name: 'District Congress Committee (DCC) Anantnag',
     role: 'District Party Headquarters',
     tier: 'District Congress Committee',
     district: 'Anantnag',
-    area: 'K.P. Road / Janglat Mandi, Anantnag',
-    phone: '0194-2452402',
-    partyDesignation: 'South Kashmir INC Care Center',
+    area: 'District Congress Bhawan, K.P. Road, Anantnag',
+    phone: '0191-2578085',
+    partyDesignation: 'INC District Public Center',
   ),
 
   // 5. Kulgam
@@ -120,7 +129,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Kulgam',
     area: 'Main Bazar, Near Court Complex, Kulgam',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC Public Grievance Center',
   ),
   RepresentativeContact(
@@ -140,7 +149,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Pulwama',
     area: 'Murran Chowk, Pulwama Main',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC Citizen Rights Desk',
   ),
   RepresentativeContact(
@@ -160,7 +169,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Shopian',
     area: 'Gol Chakkar, Batpora, Shopian',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC Public Assistance Desk',
   ),
   RepresentativeContact(
@@ -180,7 +189,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'Assembly',
     district: 'Baramulla',
     area: 'Wagoora-Kreeri / North Kashmir',
-    phone: null, // Personal contact private
+    phone: '7889702889',
     partyDesignation: 'INC Legislative Care Representative',
   ),
   RepresentativeContact(
@@ -189,7 +198,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Baramulla',
     area: 'Opposite Cariappa Park, Baramulla Main',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'North Kashmir Public Grievance Office',
   ),
 
@@ -200,7 +209,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Kupwara',
     area: 'Bypass Road, Near Old Bus Stand, Kupwara',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC Border & Remote Area Help Desk',
   ),
   RepresentativeContact(
@@ -216,11 +225,11 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
   // 10. Bandipora
   RepresentativeContact(
     name: 'Nizamuddin Bhat',
-    role: 'MLA Bandipora / Senior Leader',
+    role: 'MLA Bandipora / Chief Whip',
     tier: 'Assembly',
     district: 'Bandipora',
     area: 'Bandipora Assembly Segment',
-    phone: null, // Personal contact private
+    phone: '9419000610',
     partyDesignation: 'Congress Legislative Care Desk',
   ),
   RepresentativeContact(
@@ -229,7 +238,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Bandipora',
     area: 'Gulshan Chowk, Bandipora Town',
-    phone: '0194-2452402',
+    phone: '0191-2578085',
     partyDesignation: 'INC Citizen Service Center',
   ),
 
@@ -240,7 +249,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'State Unit & Provincial Leadership',
     district: 'Jammu',
     area: 'Jammu South / R.S. Pura',
-    phone: null, // Personal contact private
+    phone: '9419180909',
     partyDesignation: 'Working President, J&K Pradesh Congress Committee',
   ),
   RepresentativeContact(
@@ -249,7 +258,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'Provincial Leadership',
     district: 'Jammu',
     area: 'Chhamb / Akhnoor Rural',
-    phone: null, // Personal contact private
+    phone: '9419000811',
     partyDesignation: 'Former Deputy Chief Minister J&K',
   ),
   RepresentativeContact(
@@ -258,7 +267,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'State Headquarters',
     district: 'Jammu',
     area: 'Congress Bhawan, Shaheedi Chowk, Jammu',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'Central Congress Public Jan Seva Desk',
   ),
 
@@ -269,7 +278,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Samba',
     area: 'Main Chowk, National Highway, Samba',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'INC Border Farmer Assistance Cell',
   ),
   RepresentativeContact(
@@ -289,7 +298,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Kathua',
     area: 'College Road, Near District Library, Kathua',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'INC Public Grievance Office',
   ),
   RepresentativeContact(
@@ -309,7 +318,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Udhampur',
     area: 'Sailan Talab, Udhampur Town',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'INC Public Redressal Desk',
   ),
   RepresentativeContact(
@@ -329,7 +338,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Reasi',
     area: 'Nai Basti, Near Bus Stand, Reasi',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'INC District Seva Center',
   ),
   RepresentativeContact(
@@ -344,13 +353,13 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
 
   // 16. Rajouri
   RepresentativeContact(
-    name: 'Shabir Ahmad Khan',
-    role: 'Senior Leader / Former Minister',
-    tier: 'Assembly & District Leadership',
+    name: 'Iftkar Ahmed',
+    role: 'MLA Rajouri (ST) / General Secretary JKPCC',
+    tier: 'Assembly & Youth Leadership',
     district: 'Rajouri',
-    area: 'Rajouri / Manjakote',
-    phone: null, // Personal contact private
-    partyDesignation: 'Panchayati Raj State Advisory Patron',
+    area: 'Rajouri (ST) Constituency',
+    phone: '7889761847',
+    partyDesignation: 'Elected Congress MLA for Rajouri',
   ),
   RepresentativeContact(
     name: 'District Congress Committee (DCC) Rajouri',
@@ -358,28 +367,37 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Rajouri',
     area: 'Gujjar Mandi, Rajouri Town',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'Border & Gujjar-Bakerwal Welfare Desk',
   ),
 
   // 17. Poonch
+  RepresentativeContact(
+    name: 'Choudhary Mohammad Akram',
+    role: 'MLA Surankote / Former INC Leader',
+    tier: 'Assembly Representation',
+    district: 'Poonch',
+    area: 'Surankote (ST) Constituency',
+    phone: '9797569112',
+    partyDesignation: 'Elected MLA Surankote',
+  ),
+  RepresentativeContact(
+    name: 'Shahnawaz Choudhary',
+    role: 'DDC Member Surankote / DCC Leader',
+    tier: 'District Development Council',
+    district: 'Poonch',
+    area: 'Surankote-A / Poonch',
+    phone: '9149797604',
+    partyDesignation: 'Elected DDC Member & Congress Functionary',
+  ),
   RepresentativeContact(
     name: 'District Congress Committee (DCC) Poonch',
     role: 'District Party Headquarters',
     tier: 'District Congress Committee',
     district: 'Poonch',
     area: 'Bus Stand Chowk, Poonch Main',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'INC Border Relief & Seva Center',
-  ),
-  RepresentativeContact(
-    name: 'RGPRS Surankote & Mendhar Tribal Wing',
-    role: 'Tribal & Pahari Welfare Lead',
-    tier: 'Panchayat Desk',
-    district: 'Poonch',
-    area: 'Surankote / Mendhar / Mandi Blocks',
-    phone: null, // Personal contact private
-    partyDesignation: 'Tribal Rights & Forest Patta Support',
   ),
 
   // 18. Doda
@@ -389,7 +407,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Doda',
     area: 'Main Bus Stand Road, Doda Town',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'Chenab Valley INC Care Desk',
   ),
   RepresentativeContact(
@@ -409,7 +427,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Ramban',
     area: 'Main Market, Highway Road, Ramban',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'Highway Citizen Help Desk',
   ),
   RepresentativeContact(
@@ -429,7 +447,7 @@ const officialRepresentativeDirectory = <RepresentativeContact>[
     tier: 'District Congress Committee',
     district: 'Kishtwar',
     area: 'Chowgan Ground, Kishtwar Main Town',
-    phone: '0191-2544256',
+    phone: '0191-2578085',
     partyDesignation: 'INC Remote Valley Assistance Office',
   ),
   RepresentativeContact(
@@ -591,9 +609,9 @@ class _RepresentativeFinderScreenState extends State<RepresentativeFinderScreen>
                   ),
                   const SizedBox(height: 16),
                   NeoButton(
-                    onPressed: () => ActionUtils.launchPhoneCall(context, '0194-2452402'),
+                    onPressed: () => ActionUtils.launchPhoneCall(context, '0191-2578085'),
                     icon: Icons.phone_in_talk,
-                    label: 'Call JKPCC HQ (0194-2452402)',
+                    label: 'Call JKPCC HQ (0191-2578085)',
                     variant: NeoButtonVariant.green,
                   ),
                 ],

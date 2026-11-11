@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/api_client.dart';
 import '../../core/l10n/app_strings.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/member/member_data.dart';
@@ -243,14 +244,26 @@ class _NoticeNewScreenState extends ConsumerState<NoticeNewScreen> {
 
     setState(() => _saving = true);
     final member = await ref.read(memberRepositoryProvider).local();
+    final author = (member?.name != null && member!.name.isNotEmpty) ? member.name : 'RGPRS Office Bearer';
 
-    await ref.read(noticeRepositoryProvider).create(
+    final created = await ref.read(noticeRepositoryProvider).create(
           title: _title.text.trim(),
           body: _body.text.trim(),
           priority: _priority,
-          authorName: member?.name ?? '',
+          authorName: author,
           unitId: _audience?.id,
         );
+
+    // Broadcast directly to Central Control Room & Admin Portal
+    ApiClient.post('/api/notices', {
+      'id': created.id,
+      'title': created.title,
+      'body': created.body,
+      'priority': created.priority.name,
+      'authorName': author,
+      'unitId': _audience?.id ?? 'All J&K',
+      'createdAt': created.createdAt.toIso8601String(),
+    });
 
     if (!mounted) return;
     ref.invalidate(noticeListProvider);

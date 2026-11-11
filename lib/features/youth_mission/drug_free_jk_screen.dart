@@ -30,7 +30,7 @@ const deaddictionCenters = <RehabCenter>[
     location: 'Shireen Bagh, SMHS Hospital Complex, Srinagar',
     beds: 30,
     facilities: ['OPD & In-Patient Detox', 'Psychiatric Counseling', 'Free Harm-Reduction Medicine'],
-    helpline: '0194-2503111',
+    helpline: '0194-2504801',
   ),
   RehabCenter(
     name: 'GMC Psychiatric Diseases Hospital (Rehab Wing)',
@@ -521,7 +521,7 @@ class _DrugFreeJkScreenState extends State<DrugFreeJkScreen>
                       NeoTextField(
                         controller: _captainPhoneCtrl,
                         labelText: 'Captain 10-Digit Mobile',
-                        hintText: 'e.g. 9419000000',
+                        hintText: 'e.g. 9419XXXXXX',
                         keyboardType: TextInputType.phone,
                         prefixIcon: Icons.phone_android,
                       ),

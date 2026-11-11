@@ -126,8 +126,8 @@ class _AppShellState extends ConsumerState<AppShell> {
         actions: [
           IconButton(
             icon: const Icon(Icons.phone_in_talk, color: AppColors.green, size: 24),
-            tooltip: 'INC Citizen Helpline: 0194-2452402',
-            onPressed: () => ActionUtils.launchPhoneCall(context, '0194-2452402'),
+            tooltip: 'INC Citizen Helpline: 0191-2578085',
+            onPressed: () => ActionUtils.launchPhoneCall(context, '0191-2578085'),
           ),
           const SizedBox(width: 6),
         ],

@@ -31,7 +31,7 @@ const upcomingJanSunwais = <JanSunwaiEvent>[
     timeStr: '11:00 AM – 03:00 PM',
     leadersAttending: 'Tariq Hameed Karra (MLA) & JKPCC Public Committee',
     focusAreas: ['Electricity Tariff & Smart Meters', 'Ration Quotas', 'Urban Youth Unemployment'],
-    coordinatorPhone: '0194-2452402',
+    coordinatorPhone: '9419204032',
   ),
   JanSunwaiEvent(
     district: 'Jammu',
@@ -40,16 +40,16 @@ const upcomingJanSunwais = <JanSunwaiEvent>[
     timeStr: '10:30 AM – 02:30 PM',
     leadersAttending: 'Raman Bhalla (Working President) & Tara Chand (Senior Leader)',
     focusAreas: ['Border Farmer Crop Damage', 'Kandi Water Scarcity', 'Elderly Pension Delays'],
-    coordinatorPhone: '0191-2544256',
+    coordinatorPhone: '9419180909',
   ),
   JanSunwaiEvent(
     district: 'Anantnag',
     blockVenue: 'Dooru Shahabad Town Hall / Achabal Block',
     dateStr: 'Upcoming Thursday',
     timeStr: '11:30 AM – 03:30 PM',
-    leadersAttending: 'Peerzada Mohammad Syed (MLA) & DCC President',
+    leadersAttending: 'Peerzada Mohammad Syed (MLA) & Ghulam Ahmad Mir (MLA)',
     focusAreas: ['Irrigation Canals', 'MGNREGA Pending Wages', 'Health Sub-Centre Staffing'],
-    coordinatorPhone: '0194-2452402',
+    coordinatorPhone: '9419000703',
   ),
   JanSunwaiEvent(
     district: 'Bandipora',
@@ -58,7 +58,7 @@ const upcomingJanSunwais = <JanSunwaiEvent>[
     timeStr: '11:00 AM – 02:00 PM',
     leadersAttending: 'Nizamuddin Bhat (MLA) & RGPRS District Team',
     focusAreas: ['Winter Ration Stocking', 'Snow Clearance Route Priority', 'Hospital Doctor Availability'],
-    coordinatorPhone: '0194-2452402',
+    coordinatorPhone: '9419000610',
   ),
   JanSunwaiEvent(
     district: 'Baramulla',
@@ -67,7 +67,7 @@ const upcomingJanSunwais = <JanSunwaiEvent>[
     timeStr: '10:30 AM – 03:00 PM',
     leadersAttending: 'Irfan Hafiz Lone (MLA) & North Kashmir DCC Team',
     focusAreas: ['Border Village Security & Compensation', 'Orchard Hailstorm Relief', 'Village Road Potholes'],
-    coordinatorPhone: '0194-2452402',
+    coordinatorPhone: '7889702889',
   ),
   JanSunwaiEvent(
     district: 'Doda',
@@ -76,7 +76,7 @@ const upcomingJanSunwais = <JanSunwaiEvent>[
     timeStr: '11:00 AM – 03:00 PM',
     leadersAttending: 'Chenab Valley DCC Leadership & PRI Coordinators',
     focusAreas: ['Rural School Teachers', 'Jal Shakti Water Pipeline Leakages', 'Burnt Transformers'],
-    coordinatorPhone: '0191-2544256',
+    coordinatorPhone: '0191-2578085',
   ),
 ];
 

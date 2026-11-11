@@ -21,7 +21,7 @@ const jkBloodBanks = <BloodBankCenter>[
   BloodBankCenter(
     hospitalName: 'SMHS Hospital Regional Blood Center',
     district: 'Srinagar',
-    phone: '0194-2503111',
+    phone: '0194-2504801',
     is24x7: true,
     division: 'Kashmir',
   ),

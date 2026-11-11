@@ -176,7 +176,7 @@ class DriftNoticeRepository implements NoticeRepository {
     }
 
     try {
-      await syncRemoteNotices().timeout(const Duration(seconds: 2));
+      await syncRemoteNotices().timeout(const Duration(milliseconds: 2500));
     } catch (_) {}
 
     final rows = await query.get();
@@ -192,23 +192,36 @@ class DriftNoticeRepository implements NoticeRepository {
         final id = item['id'] as String? ?? '';
         if (id.isEmpty) continue;
         final existing = await (_db.select(_db.notices)..where((t) => t.id.equals(id))).getSingleOrNull();
+        final prioStr = item['priority'] as String? ?? 'normal';
+        final prio = (prioStr.toLowerCase() == 'urgent' || prioStr.toLowerCase() == 'high' || prioStr.toLowerCase() == 'critical')
+            ? NoticePriority.urgent
+            : NoticePriority.normal;
+        DateTime createdAt;
+        try {
+          createdAt = DateTime.parse(item['createdAt'] as String);
+        } catch (_) {
+          createdAt = _now();
+        }
+
         if (existing == null) {
-          final prioStr = item['priority'] as String? ?? 'normal';
-          final prio = NoticePriority.tryParse(prioStr) ?? NoticePriority.normal;
-          DateTime createdAt;
-          try {
-            createdAt = DateTime.parse(item['createdAt'] as String);
-          } catch (_) {
-            createdAt = _now();
-          }
           await _db.into(_db.notices).insert(
             NoticesCompanion.insert(
               id: id,
-              title: item['title'] as String? ?? 'Public Circular',
+              title: item['title'] as String? ?? 'Official Notice',
               body: item['body'] as String? ?? '',
               priority: prio.name,
-              authorName: item['authorName'] as String? ?? 'RGPRS HQ',
+              authorName: item['authorName'] as String? ?? 'JKPCC & RGPRS HQ',
               createdAt: createdAt,
+              unitId: Value(item['unitId'] as String?),
+            ),
+          );
+        } else {
+          await (_db.update(_db.notices)..where((t) => t.id.equals(id))).write(
+            NoticesCompanion(
+              title: Value(item['title'] as String? ?? existing.title),
+              body: Value(item['body'] as String? ?? existing.body),
+              priority: Value(prio.name),
+              authorName: Value(item['authorName'] as String? ?? existing.authorName),
             ),
           );
         }

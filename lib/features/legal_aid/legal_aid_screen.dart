@@ -381,7 +381,7 @@ Halqa: $village, District $district
                   ),
                 ),
                 NeoButton(
-                  onPressed: () => ActionUtils.launchPhoneCall(context, '0194-2452402'),
+                  onPressed: () => ActionUtils.launchPhoneCall(context, '0191-2578085'),
                   icon: Icons.call,
                   label: 'Free Legal Help',
                   variant: NeoButtonVariant.green,

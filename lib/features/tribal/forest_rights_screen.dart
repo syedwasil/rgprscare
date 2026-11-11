@@ -266,9 +266,9 @@ Copy to: Congress Tribal Rights & Legal Cell, Srinagar/Jammu for urgent represen
                         style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.mutedInk),
                       ),
                       NeoButton(
-                        onPressed: () => ActionUtils.launchPhoneCall(context, '0194-2452402'),
+                        onPressed: () => ActionUtils.launchPhoneCall(context, '0191-2578085'),
                         icon: Icons.phone,
-                        label: '0194-2452402',
+                        label: '0191-2578085',
                         variant: NeoButtonVariant.surface,
                       ),
                     ],

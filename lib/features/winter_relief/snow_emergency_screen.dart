@@ -416,7 +416,7 @@ class _SnowEmergencyScreenState extends State<SnowEmergencyScreen> {
                   ),
                   const SizedBox(height: 14),
                   const Text(
-                    'Direct 24×7 Snow Relief: 0194-2452402 (Kashmir) / 0191-2544256 (Jammu) / 112',
+                    'Direct 24×7 Snow Relief: 0191-2578085 (JKPCC HQ) / 0194-2450022 (Traffic) / 112',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.partyBlue),
                   ),
