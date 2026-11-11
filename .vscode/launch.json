@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "RGPRS J&K (Windows path-safe)",
+            "request": "launch",
+            "type": "dart",
+            "program": "C:\\rgprs_jk_run\\lib\\main.dart",
+            "cwd": "C:\\rgprs_jk_run",
+            "deviceId": "RZGYA072WAN",
+            "preLaunchTask": "Prepare Flutter space-free path"
+        }
+    ]
+}

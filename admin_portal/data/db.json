@@ -1,0 +1,52 @@
+{
+  "grievances": [
+    {
+      "id": "JK-G-261111-001",
+      "title": "Test issue",
+      "category": "Water",
+      "district": "Baramulla",
+      "tehsil": "",
+      "village": "",
+      "citizenName": "Test Name",
+      "citizenPhone": "1234567890",
+      "description": "[Voice Complaint Recorded: 0:03]\nAlso help me in this issue fast\n\n📍 Location: Seer, Baramulla District\n🎙️ Voice Note: Attached (0:03) [voice_complaint_1794403983407.m4a]\n📸 Photos Attached (1): scaled_70742.jpg",
+      "hasVoice": true,
+      "voiceSnippet": "Attached (0:03) [voice_complaint_1794403983407.m4a]",
+      "hasPhoto": true,
+      "submittedAt": "2026-11-11T19:03:49.699575",
+      "slaHoursLeft": 72,
+      "status": "Pending",
+      "assignedLeader": "Unassigned",
+      "notes": "Synced from RGPRS J&K Mobile App"
+    },
+    {
+      "id": "GRV-TEST-99",
+      "title": "Testing Grievance Sync",
+      "category": "Water",
+      "district": "Anantnag",
+      "tehsil": "",
+      "village": "",
+      "citizenName": "Peerzada Sahab",
+      "citizenPhone": "9419011111",
+      "description": "Tap water supply broken in Halqa Mattan",
+      "hasVoice": false,
+      "voiceSnippet": "",
+      "hasPhoto": false,
+      "submittedAt": "2026-11-11T13:39:32.481Z",
+      "slaHoursLeft": 72,
+      "status": "Pending",
+      "assignedLeader": "Unassigned",
+      "notes": "Synced from RGPRS J&K Mobile App"
+    }
+  ],
+  "petitions": [],
+  "smartMeters": [],
+  "snowSos": [],
+  "sportsKits": [],
+  "janSunwai": [],
+  "forestRights": [],
+  "notices": [],
+  "members": [],
+  "bloodSos": [],
+  "volunteers": []
+}

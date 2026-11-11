@@ -1,0 +1,12 @@
+{
+  "name": "rgprs-jk-admin-portal",
+  "version": "1.0.0",
+  "description": "Central Citizen Care & Grievance Control Room for Rajiv Gandhi Panchayati Raj Sangathan (RGPRS) & INC Jammu & Kashmir",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "RGPRS J&K Pradesh Congress Committee",
+  "license": "ISC"
+}
+
