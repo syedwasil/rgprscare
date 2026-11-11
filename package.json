@@ -1,9 +1,9 @@
 {
-  "name": "rgprs-inccare",
+  "name": "rgprs-inccare-admin",
   "version": "1.0.0",
-  "description": "RGPRS & INC Citizen Care Platform — Full Mobile App, Web App & Central Control Room for Jammu & Kashmir",
+  "description": "RGPRS & INC J&K Central Citizen Care Web Control Room & Admin Portal",
   "scripts": {
-    "build": "echo 'Vercel build complete'",
+    "build": "echo 'Admin Portal ready in public/'",
     "start": "node admin_portal/server.js"
   },
   "engines": {
@@ -12,4 +12,3 @@
   "author": "Rajiv Gandhi Panchayati Raj Sangathan & INC J&K",
   "license": "ISC"
 }
-

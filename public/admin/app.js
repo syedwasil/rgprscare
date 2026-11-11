@@ -1034,7 +1034,7 @@ function closeAudioModal() {
 function viewPhotoEvidence(id, title) {
   const decoded = decodeURIComponent(title || 'Evidence Photo');
   document.getElementById('photo-modal-caption').innerText = `Complaint ${id}: ${decoded}`;
-  document.getElementById('photo-viewer-img').src = 'logos/inc_logo.png';
+  document.getElementById('photo-viewer-img').src = '/logos/inc_logo.png';
   document.getElementById('modal-photo').classList.add('active');
 }
 
